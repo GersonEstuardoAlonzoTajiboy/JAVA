@@ -56,8 +56,8 @@ public class PaisController {
     }
 
     @PutMapping("{paisId}")
-    public ResponseEntity<PaisDTO> deactivePais(@PathVariable("paisId") Long paisId) {
-        PaisDTO paisDTOExist = iPaisService.deactivePais(paisId);
+    public ResponseEntity<PaisDTO> deactivePaisById(@PathVariable("paisId") Long paisId) {
+        PaisDTO paisDTOExist = iPaisService.deactivePaisById(paisId);
         if (paisDTOExist != null) {
             return ResponseEntity.ok(paisDTOExist);
         } else {

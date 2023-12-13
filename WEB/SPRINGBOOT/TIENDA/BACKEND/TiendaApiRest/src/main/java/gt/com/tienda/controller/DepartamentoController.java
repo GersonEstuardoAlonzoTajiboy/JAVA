@@ -56,8 +56,8 @@ public class DepartamentoController {
     }
 
     @PutMapping("{departamentoId}")
-    public ResponseEntity<DepartamentoDTO> deactiveDepartamento(@PathVariable("departamentoId") Long departamentoId) {
-        DepartamentoDTO departamentoDTOExist = iDepartamentoService.deactiveDepartamento(departamentoId);
+    public ResponseEntity<DepartamentoDTO> deactiveDepartamentoById(@PathVariable("departamentoId") Long departamentoId) {
+        DepartamentoDTO departamentoDTOExist = iDepartamentoService.deactiveDepartamentoById(departamentoId);
         if (departamentoDTOExist != null) {
             return ResponseEntity.ok(departamentoDTOExist);
         } else {

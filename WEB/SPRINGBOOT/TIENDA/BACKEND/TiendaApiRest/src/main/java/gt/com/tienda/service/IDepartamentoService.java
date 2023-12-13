@@ -13,7 +13,7 @@ public interface IDepartamentoService {
 
     DepartamentoDTO updateDepartamento(DepartamentoDTO departamentoDTO);
 
-    DepartamentoDTO deactiveDepartamento(Long departamentoId);
+    DepartamentoDTO deactiveDepartamentoById(Long departamentoId);
 
     DepartamentoDTO deleteDepartamentoById(Long departamentoId);
 }

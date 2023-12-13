@@ -7,6 +7,10 @@ logging:
   pattern:
     dateformat: dd-MM-yyyy hh:mm:ss
 
+  # CONFIGURATION PROCESSOR WEB
+  level:
+    web: debug
+
 # CONFIGURATION DEVTOOLS
 spring:
   devtools:
@@ -19,7 +23,6 @@ spring:
     username: GEAT
     password: programador
     driver-class-name: com.mysql.cj.jdbc.Driver
-
 
   # CONFIGURATION PLATFORM JPA
   jpa:

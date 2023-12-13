@@ -13,7 +13,7 @@ public interface IPaisService {
 
     PaisDTO updatePais(PaisDTO paisDTO);
 
-    PaisDTO deactivePais(Long paisId);
+    PaisDTO deactivePaisById(Long paisId);
 
     PaisDTO deletePaisById(Long paisId);
 }

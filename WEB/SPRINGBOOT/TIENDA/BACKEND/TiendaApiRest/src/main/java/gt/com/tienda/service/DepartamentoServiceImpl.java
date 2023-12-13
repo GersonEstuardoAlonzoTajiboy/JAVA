@@ -8,9 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.List;
 
+import static java.time.LocalDate.now;
 import static java.util.stream.Collectors.toList;
 
 @Service
@@ -22,9 +22,9 @@ public class DepartamentoServiceImpl implements IDepartamentoService {
     @Override
     @Transactional(readOnly = true)
     public List<DepartamentoDTO> getAllDepartamentos() {
-        List<DepartamentoEntity> departamentoEntities = iDepartamentoRepository.findAllByEstadoIsTrueAndPaisEntity_EstadoIsTrue();
-        if (departamentoEntities != null) {
-            return departamentoEntities.stream().map(departamentoMapper::convertToDto).collect(toList());
+        List<DepartamentoEntity> departamentoEntityList = iDepartamentoRepository.findAllByEstadoIsTrueAndPaisEntity_EstadoIsTrue();
+        if (departamentoEntityList != null) {
+            return departamentoEntityList.stream().map(departamentoMapper::convertToDto).collect(toList());
         } else {
             return null;
         }
@@ -44,18 +44,18 @@ public class DepartamentoServiceImpl implements IDepartamentoService {
     @Override
     @Transactional
     public DepartamentoDTO createDepartamento(DepartamentoDTO departamentoDTO) {
-        DepartamentoEntity departamentoEntity = departamentoMapper.convertToEntity(departamentoDTO);
-        if (departamentoEntity != null) {
-            departamentoEntity.setNombre(departamentoDTO.getNombre());
-            departamentoEntity.setPaisEntity(departamentoDTO.getPaisEntity());
-            departamentoEntity.setFechaCreacion(LocalDate.now());
-            departamentoEntity.setFechaModificacion(null);
-            departamentoEntity.setEstado(true);
-            iDepartamentoRepository.save(departamentoEntity);
+        DepartamentoEntity departamentoEntityNew = departamentoMapper.convertToEntity(departamentoDTO);
+        if (departamentoEntityNew != null) {
+            departamentoEntityNew.setNombre(departamentoDTO.getNombre());
+            departamentoEntityNew.setPaisEntity(departamentoDTO.getPaisEntity());
+            departamentoEntityNew.setFechaCreacion(now());
+            departamentoEntityNew.setFechaModificacion(null);
+            departamentoEntityNew.setEstado(true);
+            iDepartamentoRepository.save(departamentoEntityNew);
         } else {
             return null;
         }
-        return departamentoMapper.convertToDto(departamentoEntity);
+        return departamentoMapper.convertToDto(departamentoEntityNew);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class DepartamentoServiceImpl implements IDepartamentoService {
         if (departamentoEntityExist != null) {
             departamentoEntityExist.setNombre(departamentoDTO.getNombre());
             departamentoEntityExist.setPaisEntity(departamentoDTO.getPaisEntity());
-            departamentoEntityExist.setFechaModificacion(LocalDate.now());
+            departamentoEntityExist.setFechaModificacion(now());
             iDepartamentoRepository.save(departamentoEntityExist);
         } else {
             return null;
@@ -75,7 +75,7 @@ public class DepartamentoServiceImpl implements IDepartamentoService {
 
     @Override
     @Transactional
-    public DepartamentoDTO deactiveDepartamento(Long departamentoId) {
+    public DepartamentoDTO deactiveDepartamentoById(Long departamentoId) {
         DepartamentoEntity departamentoEntityExist = iDepartamentoRepository.findByDepartamentoIdAndEstadoIsTrueAndPaisEntity_EstadoIsTrue(departamentoId);
         if (departamentoEntityExist != null) {
             departamentoEntityExist.setEstado(false);

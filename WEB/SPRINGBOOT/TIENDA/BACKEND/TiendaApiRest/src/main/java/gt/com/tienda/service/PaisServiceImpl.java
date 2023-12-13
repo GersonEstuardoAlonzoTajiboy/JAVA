@@ -8,9 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.List;
 
+import static java.time.LocalDate.now;
 import static java.util.stream.Collectors.*;
 
 @Service
@@ -22,9 +22,9 @@ public class PaisServiceImpl implements IPaisService {
     @Override
     @Transactional(readOnly = true)
     public List<PaisDTO> getAllPaises() {
-        List<PaisEntity> paisEntities = iPaisRepository.findAllByEstadoIsTrue();
-        if (paisEntities != null) {
-            return paisEntities.stream().map(paisMapper::convertToDto).collect(toList());
+        List<PaisEntity> paisEntityList = iPaisRepository.findAllByEstadoIsTrue();
+        if (paisEntityList != null) {
+            return paisEntityList.stream().map(paisMapper::convertToDto).collect(toList());
         } else {
             return null;
         }
@@ -44,17 +44,17 @@ public class PaisServiceImpl implements IPaisService {
     @Override
     @Transactional
     public PaisDTO createPais(PaisDTO paisDTO) {
-        PaisEntity paisEntity = paisMapper.convertToEntity(paisDTO);
-        if (paisEntity != null) {
-            paisEntity.setNombre(paisDTO.getNombre());
-            paisEntity.setFechaCreacion(LocalDate.now());
-            paisEntity.setFechaModificacion(null);
-            paisEntity.setEstado(true);
-            iPaisRepository.save(paisEntity);
+        PaisEntity paisEntityNew = paisMapper.convertToEntity(paisDTO);
+        if (paisEntityNew != null) {
+            paisEntityNew.setNombre(paisDTO.getNombre());
+            paisEntityNew.setFechaCreacion(now());
+            paisEntityNew.setFechaModificacion(null);
+            paisEntityNew.setEstado(true);
+            iPaisRepository.save(paisEntityNew);
         } else {
             return null;
         }
-        return paisMapper.convertToDto(paisEntity);
+        return paisMapper.convertToDto(paisEntityNew);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class PaisServiceImpl implements IPaisService {
         PaisEntity paisEntityExist = iPaisRepository.findByPaisIdAndEstadoIsTrue(paisDTO.getPaisId());
         if (paisEntityExist != null) {
             paisEntityExist.setNombre(paisDTO.getNombre());
-            paisEntityExist.setFechaModificacion(LocalDate.now());
+            paisEntityExist.setFechaModificacion(now());
             iPaisRepository.save(paisEntityExist);
         } else {
             return null;
@@ -73,7 +73,7 @@ public class PaisServiceImpl implements IPaisService {
 
     @Override
     @Transactional
-    public PaisDTO deactivePais(Long paisId) {
+    public PaisDTO deactivePaisById(Long paisId) {
         PaisEntity paisEntityExist = iPaisRepository.findByPaisIdAndEstadoIsTrue(paisId);
         if (paisEntityExist != null) {
             paisEntityExist.setEstado(false);
