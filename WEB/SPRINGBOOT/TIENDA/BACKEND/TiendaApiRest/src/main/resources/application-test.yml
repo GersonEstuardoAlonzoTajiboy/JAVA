@@ -1,0 +1,27 @@
+# CONFIGURATION SERVER PORT
+server:
+  port: 9000
+
+# CONFIGURATION PATTERN DATEFORMAT - DATE - TIME
+logging:
+  pattern:
+    dateformat: dd-MM-yyyy hh:mm:ss
+
+# CONFIGURATION DEVTOOLS
+spring:
+  devtools:
+    restart:
+      enabled: true
+
+  # CONFIG CONNECTION MYSQL DATABASE
+  datasource:
+    url: jdbc:mysql://localhost:3306/tienda_test
+    username: GEAT
+    password: programador
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+  # CONFIGURATION PLATFORM JPA
+  jpa:
+    open-in-view: false
+    show-sql: true
