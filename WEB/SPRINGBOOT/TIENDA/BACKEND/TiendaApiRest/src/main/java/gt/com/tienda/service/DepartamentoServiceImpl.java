@@ -22,9 +22,9 @@ public class DepartamentoServiceImpl implements IDepartamentoService {
     @Override
     @Transactional(readOnly = true)
     public List<DepartamentoDTO> getAllDepartamentos() {
-        List<DepartamentoEntity> departamentoEntityList = iDepartamentoRepository.findAllByEstadoIsTrueAndPaisEntity_EstadoIsTrue();
-        if (departamentoEntityList != null) {
-            return departamentoEntityList.stream().map(departamentoMapper::convertToDto).collect(toList());
+        List<DepartamentoEntity> departamentoEntityListExist = iDepartamentoRepository.findAllByEstadoIsTrueAndPaisEntity_EstadoIsTrue();
+        if (departamentoEntityListExist != null) {
+            return departamentoEntityListExist.stream().map(departamentoMapper::convertToDto).collect(toList());
         } else {
             return null;
         }

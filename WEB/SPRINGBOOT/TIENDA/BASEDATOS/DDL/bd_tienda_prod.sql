@@ -32,5 +32,12 @@ CREATE TABLE municipio
     CONSTRAINT fk_municipio_departamento FOREIGN KEY (departamento_id) REFERENCES departamento (departamento_id)
 );
 
-
-
+# GENERO
+CREATE TABLE genero
+(
+    genero_id          INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nombre             VARCHAR(9)      NOT NULL UNIQUE,
+    fecha_creacion     DATE            NOT NULL,
+    fecha_modificacion DATE            NULL,
+    estado             TINYINT         NOT NULL
+);

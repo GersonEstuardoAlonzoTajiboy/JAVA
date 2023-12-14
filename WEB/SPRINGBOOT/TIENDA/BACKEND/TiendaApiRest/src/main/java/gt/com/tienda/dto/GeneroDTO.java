@@ -1,6 +1,6 @@
 package gt.com.tienda.dto;
 
-import gt.com.tienda.entity.DepartamentoEntity;
+
 import lombok.*;
 
 import java.time.LocalDate;
@@ -10,10 +10,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class MunicipioDTO {
-    private Long municipioId;
+public class GeneroDTO {
+    private Long generoId;
     private String nombre;
-    private DepartamentoEntity departamentoEntity;
     private LocalDate fechaCreacion;
     private LocalDate fechaModificacion;
     private boolean estado;

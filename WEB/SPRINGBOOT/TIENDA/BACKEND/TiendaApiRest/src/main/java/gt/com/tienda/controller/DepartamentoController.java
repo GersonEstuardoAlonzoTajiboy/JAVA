@@ -17,9 +17,9 @@ public class DepartamentoController {
 
     @GetMapping
     public ResponseEntity<List<DepartamentoDTO>> getAllDepartamentos() {
-        List<DepartamentoDTO> departamentoDTOList = iDepartamentoService.getAllDepartamentos();
-        if (departamentoDTOList != null) {
-            return ResponseEntity.ok(departamentoDTOList);
+        List<DepartamentoDTO> departamentoDTOListExist = iDepartamentoService.getAllDepartamentos();
+        if (departamentoDTOListExist != null) {
+            return ResponseEntity.ok(departamentoDTOListExist);
         } else {
             return ResponseEntity.noContent().build();
         }

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface IMunicipioRepository extends JpaRepository<MunicipioEntity, Long> {
-    List<MunicipioEntity> findAllByEstadoIsTrue();
+    List<MunicipioEntity> findAllByEstadoIsTrueAndDepartamentoEntity_EstadoIsTrue();
 
     MunicipioEntity findByMunicipioIdAndEstadoIsTrueAndDepartamentoEntity_EstadoIsTrue(Long municipioId);
 }

@@ -17,9 +17,9 @@ public class PaisController {
 
     @GetMapping
     public ResponseEntity<List<PaisDTO>> getAllPaises() {
-        List<PaisDTO> paisDTOList = iPaisService.getAllPaises();
-        if (paisDTOList != null && !paisDTOList.isEmpty()) {
-            return ResponseEntity.ok(paisDTOList);
+        List<PaisDTO> paisDTOListExist = iPaisService.getAllPaises();
+        if (paisDTOListExist != null && !paisDTOListExist.isEmpty()) {
+            return ResponseEntity.ok(paisDTOListExist);
         } else {
             return ResponseEntity.noContent().build();
         }
@@ -27,9 +27,9 @@ public class PaisController {
 
     @GetMapping("{paisId}")
     public ResponseEntity<PaisDTO> getPaisById(@PathVariable("paisId") Long paisId) {
-        PaisDTO paisDTO = iPaisService.getPaisById(paisId);
-        if (paisDTO != null) {
-            return ResponseEntity.ok(paisDTO);
+        PaisDTO paisDTOExist = iPaisService.getPaisById(paisId);
+        if (paisDTOExist != null) {
+            return ResponseEntity.ok(paisDTOExist);
         } else {
             return ResponseEntity.noContent().build();
         }

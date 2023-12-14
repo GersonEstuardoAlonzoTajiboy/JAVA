@@ -11,7 +11,6 @@ import static org.springframework.http.HttpMethod.*;
 
 @Configuration
 public class WebConfig {
-
     @Bean
     public WebMvcConfigurer corsConfig() {
         return new WebMvcConfigurer() {

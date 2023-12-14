@@ -22,9 +22,9 @@ public class PaisServiceImpl implements IPaisService {
     @Override
     @Transactional(readOnly = true)
     public List<PaisDTO> getAllPaises() {
-        List<PaisEntity> paisEntityList = iPaisRepository.findAllByEstadoIsTrue();
-        if (paisEntityList != null) {
-            return paisEntityList.stream().map(paisMapper::convertToDto).collect(toList());
+        List<PaisEntity> paisEntityListExist = iPaisRepository.findAllByEstadoIsTrue();
+        if (paisEntityListExist != null) {
+            return paisEntityListExist.stream().map(paisMapper::convertToDto).collect(toList());
         } else {
             return null;
         }
@@ -33,9 +33,9 @@ public class PaisServiceImpl implements IPaisService {
     @Override
     @Transactional(readOnly = true)
     public PaisDTO getPaisById(Long paisId) {
-        PaisEntity paisEntity = iPaisRepository.findByPaisIdAndEstadoIsTrue(paisId);
-        if (paisEntity != null) {
-            return paisMapper.convertToDto(paisEntity);
+        PaisEntity paisEntityExist = iPaisRepository.findByPaisIdAndEstadoIsTrue(paisId);
+        if (paisEntityExist != null) {
+            return paisMapper.convertToDto(paisEntityExist);
         } else {
             return null;
         }

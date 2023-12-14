@@ -14,19 +14,15 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "municipio")
-public class MunicipioEntity {
+@Table(name = "genero")
+public class GeneroEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "municipio_id", nullable = false)
-    private Long municipioId;
+    @Column(name = "genero_id", nullable = false)
+    private Long generoId;
 
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "nombre", nullable = false, unique = true)
     private String nombre;
-
-    @ManyToOne
-    @JoinColumn(name = "departamento_id", nullable = false)
-    private DepartamentoEntity departamentoEntity;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "fecha_creacion", nullable = false)

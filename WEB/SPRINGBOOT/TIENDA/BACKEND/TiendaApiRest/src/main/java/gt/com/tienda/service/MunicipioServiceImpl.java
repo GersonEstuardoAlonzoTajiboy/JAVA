@@ -22,9 +22,9 @@ public class MunicipioServiceImpl implements IMunicipioService {
     @Override
     @Transactional(readOnly = true)
     public List<MunicipioDTO> getAllMunicipios() {
-        List<MunicipioEntity> municipioEntityList = iMunicipioRepository.findAllByEstadoIsTrue();
-        if (municipioEntityList != null) {
-            return municipioEntityList.stream().map(municipioMapper::convertToDto).collect(toList());
+        List<MunicipioEntity> municipioEntityListExist = iMunicipioRepository.findAllByEstadoIsTrueAndDepartamentoEntity_EstadoIsTrue();
+        if (municipioEntityListExist != null) {
+            return municipioEntityListExist.stream().map(municipioMapper::convertToDto).collect(toList());
         } else {
             return null;
         }

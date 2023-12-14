@@ -17,9 +17,9 @@ public class MunicipioController {
 
     @GetMapping
     public ResponseEntity<List<MunicipioDTO>> getAllMunicipios() {
-        List<MunicipioDTO> municipioDTOList = iMunicipioService.getAllMunicipios();
-        if (municipioDTOList != null) {
-            return ResponseEntity.ok(municipioDTOList);
+        List<MunicipioDTO> municipioDTOListExist = iMunicipioService.getAllMunicipios();
+        if (municipioDTOListExist != null) {
+            return ResponseEntity.ok(municipioDTOListExist);
         } else {
             return ResponseEntity.noContent().build();
         }
@@ -37,9 +37,9 @@ public class MunicipioController {
 
     @PostMapping
     public ResponseEntity<MunicipioDTO> createMunicipio(@Valid @RequestBody MunicipioDTO municipioDTO) {
-        MunicipioDTO municipioDTOExist = iMunicipioService.createMunicipio(municipioDTO);
-        if (municipioDTOExist != null) {
-            return ResponseEntity.ok(municipioDTOExist);
+        MunicipioDTO municipioDTONew = iMunicipioService.createMunicipio(municipioDTO);
+        if (municipioDTONew != null) {
+            return ResponseEntity.ok(municipioDTONew);
         } else {
             return ResponseEntity.noContent().build();
         }
