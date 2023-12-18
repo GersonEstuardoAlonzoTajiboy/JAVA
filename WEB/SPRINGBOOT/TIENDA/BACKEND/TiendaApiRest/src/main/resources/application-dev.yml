@@ -17,7 +17,7 @@ spring:
     restart:
       enabled: true
 
-  # CONFIG CONNECTION MYSQL DATABASE
+  # CONFIGURATION CONNECTION MYSQL DATABASE
   datasource:
     url: jdbc:mysql://localhost:3306/tienda_dev
     username: GEAT
