@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/departamento")
+@RequestMapping("/api/v1/auth/departamento")
 public class DepartamentoController {
     private final IDepartamentoService iDepartamentoService;
 

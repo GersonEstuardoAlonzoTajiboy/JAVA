@@ -54,8 +54,9 @@ CREATE TABLE usuario
     departamento_id    INT                                            NOT NULL,
     municipio_id       INT                                            NOT NULL,
     direccion          VARCHAR(50)                                    NOT NULL,
+    telefono           VARCHAR(12)                                    NOT NULL,
     correo_electronico VARCHAR(50)                                    NOT NULL UNIQUE,
-    contrasenia        VARCHAR(50)                                    NOT NULL,
+    contrasenia        VARCHAR(75)                                    NOT NULL,
     rol                ENUM ('ADMINISTRADOR', 'DIGITADOR', 'CLIENTE') NOT NULL,
     fecha_creacion     DATE                                           NOT NULL,
     fecha_modificacion DATE                                           NULL,
@@ -75,7 +76,7 @@ CREATE TABLE proveedor
     departamento_id    INT             NOT NULL,
     municipio_id       INT             NOT NULL,
     direccion          VARCHAR(50)     NOT NULL,
-    telefono           VARCHAR(15)     NOT NULL,
+    telefono           VARCHAR(12)     NOT NULL,
     correo_electronico VARCHAR(50)     NOT NULL UNIQUE,
     creado_por         INT             NOT NULL,
     fecha_creacion     DATE            NOT NULL,
@@ -88,4 +89,5 @@ CREATE TABLE proveedor
     CONSTRAINT fk_proveedor_usuario_c FOREIGN KEY (creado_por) REFERENCES usuario (usuario_id),
     CONSTRAINT fk_proveedor_usuario_m FOREIGN KEY (modificado_por) REFERENCES usuario (usuario_id)
 );
+
 

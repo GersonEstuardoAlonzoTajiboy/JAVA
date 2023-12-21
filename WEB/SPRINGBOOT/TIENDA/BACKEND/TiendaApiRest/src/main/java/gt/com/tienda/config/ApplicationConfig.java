@@ -1,6 +1,6 @@
 package gt.com.tienda.config;
 
-import gt.com.tienda.repository.UsuarioRepository;
+import gt.com.tienda.repository.IUsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
-    private final UsuarioRepository usuarioRepository;
+    private final IUsuarioRepository IUsuarioRepository;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -25,7 +25,7 @@ public class ApplicationConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> usuarioRepository.findByCorreoElectronicoAndEstadoIsTrue(username)
+        return username -> IUsuarioRepository.findByCorreoElectronicoAndEstadoIsTrue(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
     }
 

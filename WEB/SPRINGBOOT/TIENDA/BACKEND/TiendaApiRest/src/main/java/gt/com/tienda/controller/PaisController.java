@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/pais")
+@RequestMapping("/api/v1/auth/pais")
 public class PaisController {
     private final IPaisService iPaisService;
     

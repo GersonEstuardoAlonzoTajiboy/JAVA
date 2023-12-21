@@ -58,6 +58,9 @@ public class UsuarioEntity implements UserDetails {
     @Column(name = "direccion", nullable = false)
     private String direccion;
 
+    @Column(name = "telefono", nullable = false)
+    private String telefono;
+
     @Column(name = "correo_electronico", nullable = false)
     private String correoElectronico;
 

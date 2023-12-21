@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/municipio")
+@RequestMapping("/api/v1/auth/municipio")
 public class MunicipioController {
     private final IMunicipioService iMunicipioService;
 

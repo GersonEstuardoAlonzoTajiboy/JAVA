@@ -8,5 +8,8 @@
     <file url="file://$PROJECT_DIR$/DML/Genero.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/DML/Municipio.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/DML/Pais.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/../../../../../../UDEMY/JAVA/SWINGJAVAFXSPRINGBOOT/BASEDATOS/DDL/bd_tienda_libros_dev.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/../../../../../../UDEMY/JAVA/SWINGJAVAFXSPRINGBOOT/BASEDATOS/DDL/bd_tienda_libros_prod.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/../../../../../../UDEMY/JAVA/SWINGJAVAFXSPRINGBOOT/BASEDATOS/DDL/bd_tienda_libros_test.sql" dialect="MySQL" />
   </component>
 </project>

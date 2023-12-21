@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/genero")
+@RequestMapping("/api/v1/auth/genero")
 public class GeneroController {
     private final IGeneroService iGeneroService;
 

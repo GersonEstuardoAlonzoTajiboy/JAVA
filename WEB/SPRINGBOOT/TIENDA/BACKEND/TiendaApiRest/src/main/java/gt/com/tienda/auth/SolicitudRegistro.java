@@ -1,10 +1,13 @@
-package gt.com.tienda.dto;
+package gt.com.tienda.auth;
 
 import gt.com.tienda.entity.DepartamentoEntity;
 import gt.com.tienda.entity.GeneroEntity;
 import gt.com.tienda.entity.MunicipioEntity;
 import gt.com.tienda.util.RolEnum;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
@@ -12,10 +15,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@Builder
-public class UsuarioDTO {
-    private Long usuarioId;
+public class SolicitudRegistro {
     private String nombre;
     private String apellido;
     private GeneroEntity generoEntity;
