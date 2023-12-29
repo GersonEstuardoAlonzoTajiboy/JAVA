@@ -1,8 +1,6 @@
 package gt.com.tienda.service;
 
-import gt.com.tienda.dto.UsuarioDTO;
 import gt.com.tienda.entity.UsuarioEntity;
-import gt.com.tienda.mapper.UsuarioMapper;
 import gt.com.tienda.repository.IUsuarioRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -24,7 +22,6 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public class JwtServiceImpl implements IJwtService {
     private static final String SECRET_KEY = "67fd457ad16841dacce2ba9f3abcc7c1c6edbbfc0fad9b52dd456fb9f521915e";
-    private final UsuarioMapper usuarioMapper;
     private final IUsuarioRepository IUsuarioRepository;
 
     @Override
@@ -62,11 +59,10 @@ public class JwtServiceImpl implements IJwtService {
     }
 
     @Override
-    public UsuarioDTO getUsuario(String jwtToken) {
+    public UsuarioEntity getUsuario(String jwtToken) {
         Claims claims = extractAllClaims(jwtToken);
         String usuarioCorreoElectronico = claims.getSubject();
-        UsuarioEntity usuarioEntity = IUsuarioRepository.findByCorreoElectronicoAndEstadoIsTrue(usuarioCorreoElectronico).orElseThrow();
-        return usuarioMapper.convertToDto(usuarioEntity);
+        return IUsuarioRepository.findByCorreoElectronicoAndEstadoIsTrue(usuarioCorreoElectronico).orElseThrow();
     }
 
     private Claims extractAllClaims(String jwtToken) {

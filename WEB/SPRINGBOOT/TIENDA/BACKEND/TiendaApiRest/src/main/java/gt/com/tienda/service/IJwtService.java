@@ -1,6 +1,6 @@
 package gt.com.tienda.service;
 
-import gt.com.tienda.dto.UsuarioDTO;
+import gt.com.tienda.entity.UsuarioEntity;
 import io.jsonwebtoken.Claims;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 public interface IJwtService {
-    public String extractUsuarioCorreoElectronico(String jwtToken);
+    String extractUsuarioCorreoElectronico(String jwtToken);
 
     <T> T extractClaim(String jwtToken, @NonNull Function<Claims, T> claimsTFunction);
 
@@ -19,5 +19,5 @@ public interface IJwtService {
 
     boolean isTokenValid(String jwtToken, UserDetails userDetails);
 
-    UsuarioDTO getUsuario(String jwtToken);
+    UsuarioEntity getUsuario(String jwtToken);
 }
