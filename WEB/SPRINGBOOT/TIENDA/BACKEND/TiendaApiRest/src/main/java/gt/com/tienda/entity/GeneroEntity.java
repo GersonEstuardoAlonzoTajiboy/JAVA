@@ -1,6 +1,9 @@
 package gt.com.tienda.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -21,9 +24,12 @@ public class GeneroEntity {
     @Column(name = "genero_id", nullable = false)
     private Long generoId;
 
+    @NotEmpty
+    @Size(min = 8, max = 9, message = "8 caracteres como minimo y 9 caracteres como maximo")
     @Column(name = "nombre", nullable = false, unique = true)
     private String nombre;
 
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "fecha_creacion", nullable = false)
     private LocalDate fechaCreacion;
@@ -32,6 +38,7 @@ public class GeneroEntity {
     @Column(name = "fecha_modificacion")
     private LocalDate fechaModificacion;
 
+    @NotNull
     @Column(name = "estado", nullable = false)
     private boolean estado;
 }
