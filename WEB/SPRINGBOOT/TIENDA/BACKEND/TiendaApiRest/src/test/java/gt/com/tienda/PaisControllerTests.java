@@ -1,4 +1,4 @@
-package gt.com.tienda.test;
+package gt.com.tienda;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,7 @@ public class PaisControllerTests {
 
     @Test
     void getPaisById() throws Exception {
-        this.mockMvc.perform(get("http://localhost:8090/api/v1/pais/1"))
+        this.mockMvc.perform(get("http://localhost:8090/api/v1/auth/pais/1"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))

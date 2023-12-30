@@ -9,9 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.List;
 
+import static java.time.LocalDate.now;
 import static java.util.stream.Collectors.toList;
 
 @Service
@@ -62,7 +62,7 @@ public class ProveedorServiceImpl implements IProveedorService {
             proveedorEntityNew.setTelefono(proveedorDTO.getTelefono());
             proveedorEntityNew.setCorreoElectronico(proveedorDTO.getCorreoElectronico());
             proveedorEntityNew.setCreadorPor(usuarioLogueado);
-            proveedorEntityNew.setFechaCreacion(LocalDate.now());
+            proveedorEntityNew.setFechaCreacion(now());
             proveedorEntityNew.setModificadoPor(null);
             proveedorEntityNew.setFechaModificacion(null);
             proveedorEntityNew.setEstado(true);
@@ -76,18 +76,51 @@ public class ProveedorServiceImpl implements IProveedorService {
     @Override
     @Transactional
     public ProveedorDTO updateProveedor(ProveedorDTO proveedorDTO) {
-        return null;
+        String jwtToken = httpServletRequest.getHeader("Authorization").replace("Bearer ", "");
+        var usuarioLogeado = iJwtService.getUsuario(jwtToken);
+        ProveedorEntity proveedorEntityExist = iProveedorRepository.findByProveedorIdAndEstadoIsTrue(proveedorDTO.getProveedorId());
+        if (proveedorEntityExist != null) {
+            proveedorEntityExist.setNombre(proveedorDTO.getNombre());
+            proveedorEntityExist.setApellido(proveedorDTO.getApellido());
+            proveedorEntityExist.setGeneroEntity(proveedorDTO.getGeneroEntity());
+            proveedorEntityExist.setFechaNacimiento(proveedorDTO.getFechaNacimiento());
+            proveedorEntityExist.setDpi(proveedorDTO.getDpi());
+            proveedorEntityExist.setDepartamentoEntity(proveedorDTO.getDepartamentoEntity());
+            proveedorEntityExist.setMunicipioEntity(proveedorDTO.getMunicipioEntity());
+            proveedorEntityExist.setDireccion(proveedorDTO.getDireccion());
+            proveedorEntityExist.setTelefono(proveedorDTO.getTelefono());
+            proveedorEntityExist.setCorreoElectronico(proveedorDTO.getCorreoElectronico());
+            proveedorEntityExist.setModificadoPor(usuarioLogeado);
+            proveedorEntityExist.setFechaModificacion(now());
+            iProveedorRepository.save(proveedorEntityExist);
+        } else {
+            return null;
+        }
+        return proveedorMapper.convertToDto(proveedorEntityExist);
     }
 
     @Override
     @Transactional
     public ProveedorDTO deactiveProveedorById(Long proveedorId) {
-        return null;
+        ProveedorEntity proveedorEntityExist = iProveedorRepository.findByProveedorIdAndEstadoIsTrue(proveedorId);
+        if (proveedorEntityExist != null) {
+            proveedorEntityExist.setEstado(false);
+            iProveedorRepository.save(proveedorEntityExist);
+        } else {
+            return null;
+        }
+        return proveedorMapper.convertToDto(proveedorEntityExist);
     }
 
     @Override
     @Transactional
     public ProveedorDTO deleteProveedorById(Long proveedorId) {
-        return null;
+        ProveedorEntity proveedorEntityExist = iProveedorRepository.findByProveedorIdAndEstadoIsTrue(proveedorId);
+        if (proveedorEntityExist != null) {
+            iProveedorRepository.save(proveedorEntityExist);
+        } else {
+            return null;
+        }
+        return proveedorMapper.convertToDto(proveedorEntityExist);
     }
 }

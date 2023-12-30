@@ -44,4 +44,34 @@ public class ProveedorController {
             return ResponseEntity.noContent().build();
         }
     }
+
+    @PutMapping
+    public ResponseEntity<ProveedorDTO> updateProveedor(@Valid @RequestBody ProveedorDTO proveedorDTO) {
+        ProveedorDTO proveedorDTOExist = iProveedorService.updateProveedor(proveedorDTO);
+        if (proveedorDTOExist != null) {
+            return ResponseEntity.ok(proveedorDTOExist);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+    @PutMapping("{proveedorId}")
+    public ResponseEntity<ProveedorDTO> deactiveProveedorById(@PathVariable("proveedorId") Long proveedorId) {
+        ProveedorDTO proveedorDTOExist = iProveedorService.deactiveProveedorById(proveedorId);
+        if (proveedorDTOExist != null) {
+            return ResponseEntity.ok(proveedorDTOExist);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+    @DeleteMapping("{proveedorId}")
+    public ResponseEntity<ProveedorDTO> deleteProveedorById(@PathVariable("proveedorId") Long proveedorId) {
+        ProveedorDTO proveedorDTOExist = iProveedorService.deleteProveedorById(proveedorId);
+        if (proveedorDTOExist != null) {
+            return ResponseEntity.ok(proveedorDTOExist);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
 }

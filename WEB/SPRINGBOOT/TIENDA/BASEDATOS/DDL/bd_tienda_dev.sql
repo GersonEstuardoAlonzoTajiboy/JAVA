@@ -90,4 +90,50 @@ CREATE TABLE proveedor
     CONSTRAINT fk_proveedor_usuario_m FOREIGN KEY (modificado_por) REFERENCES usuario (usuario_id)
 );
 
+# CATEGORIA, MARCA, PRODUCTO
+CREATE TABLE categoria
+(
+    categoria_id       INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nombre             VARCHAR(50)     NOT NULL UNIQUE,
+    descripcion        TEXT            NOT NULL,
+    creado_por         INT             NOT NULL,
+    fecha_creacion     DATE            NOT NULL,
+    modificado_por     INT,
+    fecha_modificacion DATE,
+    estado             TINYINT         NOT NULL,
+    CONSTRAINT fk_categoria_usuario_c FOREIGN KEY (creado_por) REFERENCES usuario (usuario_id),
+    CONSTRAINT fk_categoria_usuario_m FOREIGN KEY (modificado_por) REFERENCES usuario (usuario_id)
+);
+CREATE TABLE marca
+(
+    marca_id           INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nombre             VARCHAR(50)     NOT NULL UNIQUE,
+    descripcion        TEXT            NOT NULL,
+    creado_por         INT             NOT NULL,
+    fecha_creacion     DATE            NOT NULL,
+    modificado_por     INT,
+    fecha_modificacion DATE,
+    estado             TINYINT         NOT NULL,
+    CONSTRAINT fk_marca_usuario_c FOREIGN KEY (creado_por) REFERENCES usuario (usuario_id),
+    CONSTRAINT fk_marca_usuario_m FOREIGN KEY (modificado_por) REFERENCES usuario (usuario_id)
+);
+CREATE TABLE producto
+(
+    producto_id        INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nombre             VARCHAR(50)     NOT NULL UNIQUE,
+    descripcion        TEXT            NOT NULL,
+    stock              INT             NOT NULL,
+    precio_unitario    DECIMAL(10, 2)  NOT NULL,
+    categoria_id       INT             NOT NULL,
+    marca_id           INT             NOT NULL,
+    creado_por         INT             NOT NULL,
+    fecha_creacion     DATE            NOT NULL,
+    modificado_por     INT,
+    fecha_modificacion DATE,
+    estado             TINYINT         NOT NULL,
+    CONSTRAINT fk_producto_categoria FOREIGN KEY (categoria_id) REFERENCES categoria (categoria_id),
+    CONSTRAINT fk_producto_marca FOREIGN KEY (marca_id) REFERENCES marca (marca_id),
+    CONSTRAINT fk_producto_usuario_c FOREIGN KEY (creado_por) REFERENCES usuario (usuario_id),
+    CONSTRAINT fk_producto_usuario_m FOREIGN KEY (modificado_por) REFERENCES usuario (usuario_id)
+);
 
