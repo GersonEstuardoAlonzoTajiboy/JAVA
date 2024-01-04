@@ -425,5 +425,3 @@ VALUES ('Zacapa', 22, CURRENT_DATE, NULL, 1),
        ('San Jorge', 22, CURRENT_DATE, NULL, 1),
        ('Teculután', 22, CURRENT_DATE, NULL, 1),
        ('Usumatlán', 22, CURRENT_DATE, NULL, 1);
-
-

@@ -24,5 +24,3 @@ VALUES ('Alta Verapaz', 1, CURRENT_DATE, NULL, 1),
        ('Suchitepéquez', 1, CURRENT_DATE, NULL, 1),
        ('Totonicapán', 1, CURRENT_DATE, NULL, 1),
        ('Zacapa', 1, CURRENT_DATE, NULL, 1);
-
-

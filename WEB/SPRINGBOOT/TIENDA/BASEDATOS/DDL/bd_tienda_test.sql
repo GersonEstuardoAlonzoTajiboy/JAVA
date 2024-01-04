@@ -136,4 +136,3 @@ CREATE TABLE producto
     CONSTRAINT fk_producto_usuario_c FOREIGN KEY (creado_por) REFERENCES usuario (usuario_id),
     CONSTRAINT fk_producto_usuario_m FOREIGN KEY (modificado_por) REFERENCES usuario (usuario_id)
 );
-
