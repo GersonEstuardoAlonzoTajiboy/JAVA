@@ -82,7 +82,7 @@ public class UsuarioEntity implements UserDetails {
     private String correoElectronico;
 
     @NotEmpty
-    @Size(min = 75, max = 75, message = "75 caracteres como minimo y 75 caracteres como maximo")
+    @Size(min = 30, max = 75, message = "75 caracteres como minimo y 75 caracteres como maximo")
     @Column(name = "contrasenia", nullable = false)
     private String contrasenia;
 

@@ -117,7 +117,7 @@ public class ProveedorServiceImpl implements IProveedorService {
     public ProveedorDTO deleteProveedorById(Long proveedorId) {
         ProveedorEntity proveedorEntityExist = iProveedorRepository.findByProveedorIdAndEstadoIsTrue(proveedorId);
         if (proveedorEntityExist != null) {
-            iProveedorRepository.save(proveedorEntityExist);
+            iProveedorRepository.delete(proveedorEntityExist);
         } else {
             return null;
         }
