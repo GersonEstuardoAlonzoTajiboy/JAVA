@@ -25,7 +25,7 @@ public class GeneroEntity {
     private Long generoId;
 
     @NotEmpty
-    @Size(min = 8, max = 9, message = "8 caracteres como minimo y 9 caracteres como maximo")
+    @Size(min = 1, max = 9, message = "1 caracter como minimo y 9 caracteres como maximo")
     @Column(name = "nombre", nullable = false, unique = true)
     private String nombre;
 
